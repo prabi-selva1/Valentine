@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine?</title>
+
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+      overflow:hidden;
+    }
+
+    .card{
+      background: rgba(255,255,255,0.92);
+      padding: 40px 30px;
+      border-radius: 26px;
+      text-align:center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      width: min(520px, 92vw);
+      position: relative;
+    }
+
+    h1{
+      margin-bottom: 32px;
+      font-size: 32px;
+    }
+
+    .buttons{
+      position: relative;
+      height: 140px;
+    }
+
+    button{
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.15s ease;
+    }
+
+    .yes{
+      font-size: 28px;
+      padding: 18px 56px;
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .yes:hover{
+      transform: scale(1.08);
+    }
+
+    .no{
+      position: absolute;
+      font-size: 18px;
+      padding: 12px 26px;
+      background: #ddd;
+      color: #333;
+      left: 60%;
+      top: 60%;
+    }
+
+    .message{
+      margin-top: 28px;
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 32px;
+      color: #c9184a;
+    }
+
+    .heart{
+      position:absolute;
+      width: 16px;
+      height: 16px;
+      background: #ff4d6d;
+      transform: rotate(45deg);
+      animation: float 3s linear forwards;
+      opacity: 0.6;
+      pointer-events:none;
+    }
+
+    .heart::before,
+    .heart::after{
+      content:'';
+      position:absolute;
+      width:16px;
+      height:16px;
+      background:#ff4d6d;
+      border-radius:50%;
+    }
+
+    .heart::before{ left:-8px; }
+    .heart::after{ top:-8px; }
+
+    @keyframes float{
+      from{ transform: translateY(0) rotate(45deg); }
+      to{ transform: translateY(-120vh) rotate(45deg); opacity:0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Shayla, will you be my valentine? 💘</h1>
+
+    <div class="buttons">
+      <button class="yes" id="yesBtn">YES</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const msg = document.getElementById("message");
+
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 70;
+      const y = Math.random() * 70;
+      noBtn.style.left = x + "%";
+      noBtn.style.top = y + "%";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      msg.textContent = "Get a dress with the ZARA gift card for Saturday <3";
+      releaseHearts(30);
+    });
+
+    function releaseHearts(count){
+      for(let i=0;i<count;i++){
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.bottom = "-20px";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(), 3000);
+      }
+    }
+  </script>
+</body>
+</html>
